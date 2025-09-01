@@ -1,0 +1,37 @@
+{
+  "run": [
+    {
+      "method": "shell.run",
+      "params": {
+        "message": [
+          "git clone https://github.com/SUP3RMASS1VE/VibeVoiceTTS app"
+        ]
+      }
+    },
+    {
+      "method": "script.start",
+      "params": {
+        "uri": "torch.js",
+        "params": {
+          "path": "app",
+          "venv": "venv",
+          "xformers": false,
+          "triton": false,
+          "sageattention": false
+        }
+      }
+    },
+    {
+      "method": "shell.run",
+      "params": {
+        "venv": "venv",
+        "path": "app",
+        "chain": true,
+        "input": null,
+        "message": [
+          "uv pip install -e ."
+        ]
+      }
+    }
+  ]
+}
