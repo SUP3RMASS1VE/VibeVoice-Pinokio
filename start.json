@@ -10,7 +10,7 @@
         "env": {},
         "input": null,
         "message": [
-          "python demo\\gradio_demo.py"
+          "python demo/gradio_demo.py"
         ],
         "on": [
           {
