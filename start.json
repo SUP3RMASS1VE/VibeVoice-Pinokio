@@ -4,13 +4,13 @@
     {
       "method": "shell.run",
       "params": {
-        "path": "app",
-        "venv": "venv",
+        "path": "app/demo",
+        "venv": "../venv",
         "chain": true,
         "env": {},
         "input": null,
         "message": [
-          "python {{cwd}}/app/demo/gradio_demo.py"
+          "python gradio_demo.py"
         ],
         "on": [
           {
