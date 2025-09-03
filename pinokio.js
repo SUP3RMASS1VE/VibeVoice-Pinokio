@@ -1,6 +1,6 @@
 module.exports = {
   version: "3.7",
-  title: "VibeVoice-Windows-NVIDIA",
+  title: "VibeVoice - NVIDIA",
   description: "Frontier Open-Source Text-to-Speech",
   icon: "icon.png",
   menu: async (kernel, info) => {
@@ -86,3 +86,4 @@ module.exports = {
     }
   }
 }
+
