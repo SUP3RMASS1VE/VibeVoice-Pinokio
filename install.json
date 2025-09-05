@@ -16,7 +16,7 @@
           "path": "app",
           "venv": "venv",
           "xformers": false,
-          "triton": false,
+          "triton": true,
           "sageattention": false
         }
       }
