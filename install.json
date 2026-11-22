@@ -1,10 +1,21 @@
 {
   "run": [
     {
+      "when": "{{!exists('app')}}",
       "method": "shell.run",
       "params": {
         "message": [
           "git clone https://github.com/SUP3RMASS1VE/VibeVoiceTTS app"
+        ]
+      }
+    },
+    {
+      "when": "{{!exists('app/venv')}}",
+      "method": "shell.run",
+      "params": {
+        "path": "app",
+        "message": [
+          "uv venv venv --python 3.10"
         ]
       }
     },

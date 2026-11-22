@@ -9,12 +9,9 @@ module.exports = {
         "path": "{{args && args.path ? args.path : '.'}}",
         "message": [
           "uv pip install torch==2.7.0 torchvision torchaudio {{args && args.xformers ? 'xformers' : ''}} --index-url https://download.pytorch.org/whl/cu128",
-          "uv pip install https://huggingface.co/lldacing/flash-attention-windows-wheel/resolve/main/flash_attn-2.7.4.post1%2Bcu128torch2.7.0cxx11abiFALSE-cp310-cp310-win_amd64.whl",
-          "{{args && args.triton ? 'uv pip install triton-windows==3.3.1.post19' : ''}}",
-          "{{args && args.sageattention ? 'uv pip install https://github.com/woct0rdho/SageAttention/releases/download/v2.1.1-windows/sageattention-2.1.1+cu128torch2.7.0-cp310-cp310-win_amd64.whl' : ''}}",
+          "uv pip install https://huggingface.co/lldacing/flash-attention-windows-wheel/resolve/main/flash_attn-2.7.4.post1%2Bcu128torch2.7.0cxx11abiFALSE-cp310-cp310-win_amd64.whl"
         ]
-      },
-      "next": null
+      }
     },
     // windows amd
     {
@@ -59,11 +56,9 @@ module.exports = {
         "message": [
           "uv pip install torch==2.7.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128",
           "uv pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl",
-          "uv pip install triton",
-          "{{args && args.sageattention ? 'uv pip install git+https://github.com/thu-ml/SageAttention.git' : ''}}"
+          "uv pip install triton"
         ]
-      },
-      "next": null
+      }
     },
     // linux rocm (amd)
     {
@@ -86,6 +81,34 @@ module.exports = {
         "message": "uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu"
       },
       "next": null
+    },
+    // optional extras (nvidia only; the nvidia steps above fall through to here)
+    {
+      "when": "{{platform === 'win32' && gpu === 'nvidia' && args && args.triton}}",
+      "method": "shell.run",
+      "params": {
+        "venv": "{{args && args.venv ? args.venv : null}}",
+        "path": "{{args && args.path ? args.path : '.'}}",
+        "message": "uv pip install triton-windows==3.3.1.post19"
+      }
+    },
+    {
+      "when": "{{platform === 'win32' && gpu === 'nvidia' && args && args.sageattention}}",
+      "method": "shell.run",
+      "params": {
+        "venv": "{{args && args.venv ? args.venv : null}}",
+        "path": "{{args && args.path ? args.path : '.'}}",
+        "message": "uv pip install https://github.com/woct0rdho/SageAttention/releases/download/v2.1.1-windows/sageattention-2.1.1+cu128torch2.7.0-cp310-cp310-win_amd64.whl"
+      }
+    },
+    {
+      "when": "{{platform === 'linux' && gpu === 'nvidia' && args && args.sageattention}}",
+      "method": "shell.run",
+      "params": {
+        "venv": "{{args && args.venv ? args.venv : null}}",
+        "path": "{{args && args.path ? args.path : '.'}}",
+        "message": "uv pip install git+https://github.com/thu-ml/SageAttention.git"
+      }
     }
   ]
 }

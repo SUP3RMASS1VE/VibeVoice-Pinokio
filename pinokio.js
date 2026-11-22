@@ -1,6 +1,6 @@
 module.exports = {
   version: "3.7",
-  title: "VibeVoice - NVIDIA",
+  title: "VibeVoice",
   description: "Frontier Open-Source Text-to-Speech",
   icon: "icon.png",
   menu: async (kernel, info) => {
@@ -70,7 +70,7 @@ module.exports = {
           href: "install.json",
         }, {
           icon: "fa-regular fa-circle-xmark",
-          text: "<div><strong>Reset</strong><div>Revert to pre-install state</div></div>",
+          text: "<div><strong>Reset</strong><div>Remove the Python environment (keeps app and downloaded models)</div></div>",
           href: "reset.js",
           confirm: "Are you sure you wish to reset the app?"
 
